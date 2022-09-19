@@ -6,3 +6,7 @@ const lotteryPath = path.resolve(__dirname, "contracts", "Lottery.sol");
 const source = fs.readFileSync(lotteryPath, "utf8");
 
 module.exports = solc.compile(source, 1).contracts[":Lottery"];
+
+console.log(solc.compile(source, 1).contracts[":Lottery"]);
+console.log('ABI : ', JSON.parse(solc.compile(source, 1).contracts[":Lottery"].interface));
+console.log('ABI (JSON) : ', JSON.stringify(solc.compile(source, 1).contracts[":Lottery"].interface));

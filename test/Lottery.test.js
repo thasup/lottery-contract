@@ -7,7 +7,6 @@ const web3 = new Web3(ganache.provider());
 
 let fetchAccounts;
 let lottery;
-let INITIAL_STRING = 'Hi there!';
 
 beforeEach(async () => {
   // Get a list of all accounts
