@@ -1,27 +1,32 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.8.9;
 
 contract Lottery {
     address public manager;
-    address[] public players;
-    address public winner;
+    address payable[] public players;
+    address payable public winner;
 
-    function Lottery() public {
-        winner = address(0);
+    constructor() {
+        winner = payable(address(0));
         manager = msg.sender;
     }
 
     function enter() public payable {
         require(msg.value > .01 ether);
 
-        players.push(msg.sender);
+        players.push(payable(msg.sender));
     }
 
-    function getAllPlayers() public view returns (address[]) {
+    function getAllPlayers() public view returns (address payable[] memory) {
         return players;
     }
 
-    function random() private view returns (uint) {
-        return uint(keccak256(block.difficulty, now, players));
+    function random() private view returns (uint256) {
+        return
+            uint256(
+                keccak256(
+                    abi.encodePacked(block.difficulty, block.timestamp, players)
+                )
+            );
     }
 
     modifier restricted() {
@@ -30,9 +35,9 @@ contract Lottery {
     }
 
     function pickWinner() public restricted {
-        uint index = random() % players.length;
+        uint256 index = random() % players.length;
         winner = players[index];
-        winner.transfer(this.balance);
-        players = new address[](0);
+        winner.transfer(address(this).balance);
+        players = new address payable[](0);
     }
 }

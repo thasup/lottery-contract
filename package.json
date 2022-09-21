@@ -1,5 +1,5 @@
 {
-  "name": "lottery-dapp",
+  "name": "lottery-contract",
   "version": "1.0.0",
   "engines": {
     "node": "16.17.0"
@@ -12,11 +12,11 @@
   "author": "thasup",
   "license": "ISC",
   "dependencies": {
-    "@truffle/hdwallet-provider": "^1.7.0",
+    "@truffle/hdwallet-provider": "^2.0.1",
     "dotenv": "^16.0.2",
     "ganache-cli": "^6.12.2",
     "mocha": "^9.2.2",
-    "solc": "^0.4.17",
+    "solc": "^0.8.9",
     "web3": "^1.8.0"
   }
 }
